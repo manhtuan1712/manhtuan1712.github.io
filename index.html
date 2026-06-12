@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tuan Tran Manh — Senior Mobile Developer</title>
+<meta name="description" content="Tuan Tran Manh — Senior Mobile Developer. Flutter, Android (Kotlin/Java), iOS (Swift). #1 Finance App in App Store Ireland.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b1210;
+    --bg-soft: #101a17;
+    --card: #121d19;
+    --card-2: #16231e;
+    --line: #1f2e28;
+    --text: #e8efeb;
+    --muted: #9db3aa;
+    --faint: #6c8278;
+    --accent: #34d399;
+    --accent-dim: #10b981;
+    --accent-soft: rgba(52, 211, 153, 0.12);
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--accent); color: #06251a; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(11, 18, 16, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 980px; margin: 0 auto; padding: 18px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .nav-logo { font-family: var(--serif); font-weight: 700; font-size: 1.05rem; color: var(--text); }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 22px; flex-wrap: wrap; }
+  .nav-links a {
+    color: var(--muted); font-size: 0.85rem; font-weight: 600;
+    letter-spacing: 0.02em; text-decoration: none;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ---------- Hero ---------- */
+  header.wrap { padding: 110px 24px 80px; }
+  .hero { display: flex; gap: 36px; align-items: flex-start; flex-wrap: wrap; }
+  .avatar { margin-top: 30px; }
+  .avatar {
+    width: 132px; height: 132px; border-radius: 50%; flex-shrink: 0;
+    border: 2px solid var(--accent);
+    background: var(--card-2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 2.4rem; color: var(--accent);
+    overflow: hidden; box-shadow: 0 0 0 6px var(--accent-soft);
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; display: none; }
+  .avatar.has-img img { display: block; }
+  .avatar.has-img .monogram { display: none; }
+  .hero-text { flex: 1; min-width: 280px; }
+  .kicker {
+    font-family: var(--mono); font-size: 0.78rem; color: var(--accent);
+    letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px;
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(2.1rem, 5vw, 3.1rem);
+    line-height: 1.12; margin-bottom: 14px;
+  }
+  .tagline {
+    font-family: var(--serif); font-style: italic; font-size: 1.15rem;
+    color: var(--text); margin-bottom: 14px;
+  }
+  .tagline em { font-style: italic; color: var(--accent); }
+  .hero-sub { color: var(--muted); max-width: 60ch; margin-bottom: 20px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; font-weight: 600; color: var(--accent);
+    background: var(--accent-soft); border: 1px solid rgba(52, 211, 153, 0.25);
+    padding: 5px 14px; border-radius: 999px; margin-bottom: 16px;
+  }
+  .badge::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent); animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+  .btn {
+    display: inline-block; padding: 11px 24px; border-radius: 10px;
+    font-weight: 700; font-size: 0.9rem; text-decoration: none;
+    background: var(--accent); color: #06251a; border: 1px solid var(--accent);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(52, 211, 153, 0.25); text-decoration: none; }
+  .btn-ghost { background: transparent; color: var(--accent); }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+    padding: 8px 15px; font-size: 0.84rem; color: var(--muted);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .chip svg { width: 13px; height: 13px; fill: var(--accent); flex-shrink: 0; }
+  a.chip:hover { border-color: var(--accent-dim); color: var(--text); text-decoration: none; transform: translateY(-2px); }
+
+  /* ---------- Highlights ---------- */
+  .highlights {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px; margin: 8px 0 64px;
+  }
+  .stat {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px 22px; transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .stat:hover { transform: translateY(-3px); border-color: var(--accent-dim); }
+  .stat .num { font-family: var(--serif); font-size: 1.7rem; font-weight: 700; color: var(--accent); }
+  .stat .lbl { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 56px 0; border-top: 1px solid var(--line); scroll-margin-top: 70px; }
+  header { scroll-margin-top: 70px; }
+  .sec-title {
+    font-family: var(--serif); font-size: 1.65rem; font-weight: 600; margin-bottom: 8px;
+  }
+  .sec-sub { color: var(--muted); max-width: 68ch; margin-bottom: 30px; }
+
+  /* ---------- AI section ---------- */
+  .ai-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 22px; }
+  .ai-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 24px;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .ai-card:hover { transform: translateY(-3px); border-color: var(--accent-dim); }
+  .ai-card .icon { font-size: 1.4rem; margin-bottom: 12px; }
+  .ai-card h3 { font-family: var(--serif); font-size: 1.08rem; margin-bottom: 8px; }
+  .ai-card p { font-size: 0.9rem; color: var(--muted); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-family: var(--mono); font-size: 0.74rem; color: var(--accent);
+    background: var(--accent-soft); border: 1px solid rgba(52, 211, 153, 0.25);
+    padding: 4px 11px; border-radius: 999px;
+  }
+
+  /* ---------- Featured work / phone frames ---------- */
+  .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .work {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 26px 24px 30px; text-align: center;
+    display: flex; flex-direction: column;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+  }
+  .work:hover { transform: translateY(-4px); border-color: var(--accent-dim); }
+  .device-area { display: flex; align-items: center; justify-content: center; gap: 26px; flex-wrap: wrap; margin-top: 22px; flex: 1; }
+  .phone {
+    width: 170px; aspect-ratio: 9 / 19; flex-shrink: 0;
+    border-radius: 26px; border: 3px solid var(--line);
+    background: linear-gradient(160deg, var(--card-2), var(--bg-soft));
+    position: relative; overflow: hidden;
+  }
+  .work:hover .phone, .work:hover .browser { border-color: var(--accent-dim); }
+  .phone::before {
+    content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+    width: 36%; height: 16px; background: var(--bg); border-radius: 999px; z-index: 2;
+  }
+  .phone img { width: 100%; height: 100%; object-fit: cover; display: none; }
+  .phone.has-img img { display: block; }
+  .phone .ph-empty {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 10px; padding: 18px;
+  }
+  .phone.has-img .ph-empty { display: none; }
+  .ph-empty .glyph { font-size: 1.8rem; opacity: 0.85; }
+  .ph-empty .hint { font-family: var(--mono); font-size: 0.62rem; color: var(--faint); word-break: break-all; }
+  .work h3 { font-family: var(--serif); font-size: 1.1rem; }
+  .work p { font-size: 0.84rem; color: var(--muted); margin-top: 2px; }
+  .stores { display: flex; justify-content: center; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+  .stores a {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 0.72rem; color: var(--accent);
+    border: 1px solid rgba(52, 211, 153, 0.3); padding: 5px 12px; border-radius: 999px;
+  }
+  .stores a svg { width: 11px; height: 13px; fill: currentColor; flex-shrink: 0; }
+  .stores a:hover { background: var(--accent-soft); text-decoration: none; }
+  /* Lightbox */
+  .phone.has-img, .browser.has-img { cursor: zoom-in; }
+  .lightbox {
+    position: fixed; inset: 0; z-index: 300; display: none;
+    align-items: center; justify-content: center; padding: 32px;
+    background: rgba(5, 9, 8, 0.92); cursor: zoom-out;
+    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 92vw; max-height: 92vh; border-radius: 14px; border: 1px solid var(--line); }
+  /* Wide card with a browser frame for web projects */
+  .work-wide { grid-column: 1 / -1; }
+  .browser {
+    width: min(100%, 640px); aspect-ratio: 16 / 10; flex-shrink: 1;
+    border-radius: 14px; border: 3px solid var(--line);
+    background: linear-gradient(160deg, var(--card-2), var(--bg-soft));
+    position: relative; overflow: hidden; padding-top: 34px;
+  }
+  .browser::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 34px;
+    background: var(--bg-soft); border-bottom: 1px solid var(--line);
+  }
+  .browser::after {
+    content: ""; position: absolute; top: 13px; left: 16px; width: 8px; height: 8px;
+    border-radius: 50%; color: var(--faint);
+    background: var(--faint);
+    box-shadow: 14px 0 0 var(--faint), 28px 0 0 var(--faint);
+  }
+  .browser img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: none; }
+  .browser.has-img img { display: block; }
+  .browser .ph-empty { position: absolute; inset: 34px 0 0 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 18px; }
+  .browser.has-img .ph-empty { display: none; }
+  .phone-mini { width: 200px; border-radius: 28px; }
+  .phone-mini .ph-empty .glyph { font-size: 1.4rem; }
+  .phone-mini .ph-empty .hint { font-size: 0.6rem; }
+
+  /* ---------- Experience ---------- */
+  .job {
+    display: flex; gap: 20px; padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .job:last-child { border-bottom: none; }
+  .logo-slot {
+    width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0;
+    border: 1px solid var(--line); background: var(--card-2);
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+    font-family: var(--serif); font-weight: 700; font-size: 1.15rem; color: var(--accent);
+  }
+  .logo-slot img { width: 100%; height: 100%; object-fit: contain; display: none; }
+  .logo-slot.has-img img { display: block; }
+  .logo-slot.has-img .monogram { display: none; }
+  .job-body { flex: 1; }
+  .job-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+  .job-head h3 { font-family: var(--serif); font-size: 1.12rem; font-weight: 600; }
+  .job-head .co { color: var(--accent); font-weight: 600; font-size: 0.95rem; }
+  .job-meta { font-family: var(--mono); font-size: 0.72rem; color: var(--faint); letter-spacing: 0.06em; margin: 4px 0 12px; text-transform: uppercase; }
+  .job ul { list-style: none; }
+  .job li { position: relative; padding-left: 20px; margin-bottom: 8px; color: var(--muted); font-size: 0.92rem; }
+  .job li::before { content: "▸"; position: absolute; left: 0; color: var(--accent); }
+  .job li strong { color: var(--text); font-weight: 600; }
+  .job .stack { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .job .stack .tag { font-size: 0.68rem; padding: 3px 9px; }
+  .projects { margin-top: 10px; font-size: 0.85rem; color: var(--muted); }
+  .projects .pj { color: var(--text); font-weight: 600; }
+
+  /* ---------- Skills ---------- */
+  .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .skill-group { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+  .skill-group h3 {
+    font-family: var(--mono); font-size: 0.75rem; font-weight: 500; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px;
+  }
+
+  /* ---------- Education / footer ---------- */
+  .edu { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 26px; }
+  .edu h3 { font-family: var(--serif); font-size: 1.08rem; }
+  .edu p { color: var(--muted); font-size: 0.9rem; }
+  footer { border-top: 1px solid var(--line); padding: 44px 0 56px; text-align: center; }
+  footer .f-links { display: flex; justify-content: center; gap: 22px; margin-bottom: 14px; font-size: 0.9rem; }
+  footer .tiny { color: var(--faint); font-size: 0.78rem; font-family: var(--mono); }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+  /* ---------- Print ---------- */
+  @media print {
+    :root { --bg: #fff; --bg-soft: #fff; --card: #fff; --card-2: #fff; --line: #ddd; --text: #111; --muted: #444; --faint: #777; --accent: #0a6e4f; --accent-dim: #0a6e4f; --accent-soft: #eef6f2; }
+    nav, .phone, #work, footer .tiny { display: none; }
+    body { font-size: 12px; }
+    header, section { padding: 18px 0; }
+    header.wrap { padding: 18px 24px; }
+    .reveal { opacity: 1; transform: none; }
+    .stat, .ai-card, .skill-group, .edu { break-inside: avoid; }
+    a { color: #0a6e4f; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">TTM<span>.</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#ai">AI Engineering</a>
+      <a href="#work">Featured Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+    </div>
+  </div>
+</nav>
+
+<header class="wrap" id="about">
+  <div class="hero">
+    <div class="avatar" data-img="assets/profile.jpg">
+      <span class="monogram">TT</span>
+      <img alt="Tuan Tran Manh">
+    </div>
+    <div class="hero-text">
+      <div class="kicker">Senior Mobile Developer · Technical Lead</div>
+      <h1>Tuan Tran Manh</h1>
+      <div class="badge">Open to mobile development &amp; AI-applied engineering roles</div>
+      <p class="tagline">I build mobile products that hit <em>#1 on the App Store</em> — and help startups ship fast enough to <em>raise millions</em>.</p>
+      <p class="hero-sub">Nine years across Flutter, Android (Kotlin/Java), and iOS (Swift). I rebuild apps from the ground up, define the architecture, and lead the teams — from CleverCards' #1 Finance App ranking in Ireland to Shipeace's $1.5M VC raise, with an AI-augmented, spec-driven way of working.</p>
+      <div class="contact-row">
+        <span class="chip"><svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M215.7 499.2C267 435 384 279.4 384 192 384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2 12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg>Ho Chi Minh City, Vietnam</span>
+        <a class="chip" href="tel:+84933325263"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64 0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>+84 933 325 263</a>
+        <a class="chip" href="mailto:manhtuan17121994@gmail.com"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></svg>manhtuan17121994@gmail.com</a>
+        <a class="chip" href="https://www.linkedin.com/in/tuantranmanh/" target="_blank" rel="noopener"><svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/></svg>LinkedIn</a>
+        <a class="chip" href="https://github.com/manhtuan1712" target="_blank" rel="noopener"><svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8z"/></svg>GitHub</a>
+      </div>
+      <div class="cta-row">
+        <a class="btn" href="mailto:manhtuan17121994@gmail.com">Get in touch</a>
+        <a class="btn btn-ghost" href="#experience">See my work</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap reveal">
+  <div class="highlights">
+    <div class="stat"><div class="num">#1</div><div class="lbl">Finance App — App Store Ireland</div></div>
+    <div class="stat"><div class="num">−20%</div><div class="lbl">App crashes after architecture rebuild</div></div>
+    <div class="stat"><div class="num">+70%</div><div class="lbl">Active users on new e-commerce app</div></div>
+    <div class="stat"><div class="num">+40%</div><div class="lbl">Team-wide code quality improvement</div></div>
+    <div class="stat"><div class="num">$1.5M</div><div class="lbl">VC funding raised with Shipeace</div></div>
+  </div>
+</div>
+
+<section id="ai">
+  <div class="wrap reveal">
+    <h2 class="sec-title">AI-Augmented Engineering</h2>
+    <p class="sec-sub">I pair daily with Claude, GitHub Copilot, and OpenAI Codex, applying spec-driven development to ship faster without sacrificing architecture quality — and I help improve our engineering hub so the whole team gets more out of AI.</p>
+    <div class="ai-cards">
+      <div class="ai-card">
+        <div class="icon">📐</div>
+        <h3>Spec-Driven Development</h3>
+        <p>Specifications first, code second: clear specs become the contract that AI tools implement against, keeping generated code aligned with the intended architecture.</p>
+      </div>
+      <div class="ai-card">
+        <div class="icon">🤝</div>
+        <h3>AI Pair Programming</h3>
+        <p>Daily workflows built around Claude, Copilot, and Codex — for scaffolding, refactoring, test generation, and code review — with engineering judgment on every output.</p>
+      </div>
+      <div class="ai-card">
+        <div class="icon">🚀</div>
+        <h3>Team Enablement</h3>
+        <p>Improving the engineering hub for AI usage: establishing workflows, tooling, and guardrails so the team adopts AI effectively and consistently.</p>
+      </div>
+    </div>
+    <div class="tags">
+      <span class="tag">Claude</span><span class="tag">GitHub Copilot</span><span class="tag">OpenAI Codex</span><span class="tag">Spec-Driven Development</span><span class="tag">Prompt Engineering</span><span class="tag">AI Code Review</span>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap reveal">
+    <h2 class="sec-title">Featured Work</h2>
+    <p class="sec-sub">Apps I'm building and have shipped.</p>
+    <div class="work-grid">
+      <div class="work">
+        <h3><a href="https://www.clevercards.com/" target="_blank" rel="noopener">CleverCards</a></h3>
+        <p>#1 Finance App, App Store Ireland · iOS &amp; Android · Apple Pay &amp; Google Pay</p>
+        <div class="device-area">
+          <div class="phone" data-img="assets/shot-clevercards.png">
+            <img alt="CleverCards screenshot">
+            <div class="ph-empty"><div class="glyph">💳</div><div class="hint">assets/shot-clevercards.png</div></div>
+          </div>
+        </div>
+        <div class="stores">
+          <a href="https://apps.apple.com/us/app/clevercards/id1521860373" target="_blank" rel="noopener"><svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.7-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.clevercards.clevercash" target="_blank" rel="noopener">▶ Google Play</a>
+        </div>
+      </div>
+      <div class="work">
+        <h3><a href="https://www.arkifinance.com/" target="_blank" rel="noopener">Arki Finance</a></h3>
+        <p>Personalised wealth platform · MAS-licensed, Singapore</p>
+        <div class="device-area">
+          <div class="phone" data-img="assets/shot-arki.png">
+            <img alt="Arki Finance screenshot">
+            <div class="ph-empty"><div class="glyph">🌱</div><div class="hint">assets/shot-arki.png</div></div>
+          </div>
+        </div>
+        <div class="stores">
+          <a href="https://apps.apple.com/sg/app/arki-finance/id6733229005" target="_blank" rel="noopener"><svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.7-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.optimalvest" target="_blank" rel="noopener">▶ Google Play</a>
+        </div>
+      </div>
+      <div class="work">
+        <h3><a href="https://acktrails.com/" target="_blank" rel="noopener">ACKTrails</a></h3>
+        <p>Trail-exploration app for Nantucket Island · Nantucket Conservation Foundation</p>
+        <div class="device-area">
+          <div class="phone" data-img="assets/shot-acktrails.png">
+            <img alt="ACKTrails screenshot">
+            <div class="ph-empty"><div class="glyph">🥾</div><div class="hint">assets/shot-acktrails.png</div></div>
+          </div>
+        </div>
+        <div class="stores">
+          <a href="https://apps.apple.com/us/app/acktrails/id1462021860" target="_blank" rel="noopener"><svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.7-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.nantucket.acktrails.android" target="_blank" rel="noopener">▶ Google Play</a>
+        </div>
+      </div>
+      <div class="work work-wide">
+        <h3><a href="https://www.shipeace.com/en" target="_blank" rel="noopener">Shipeace</a></h3>
+        <p>AI-powered logistics operations platform · Web &amp; Mobile</p>
+        <div class="device-area">
+          <div class="browser" data-img="assets/shot-shipeace-web.png">
+            <img alt="Shipeace web screenshot">
+            <div class="ph-empty"><div class="glyph">🚢</div><div class="hint">assets/shot-shipeace-web.png</div></div>
+          </div>
+          <div class="phone phone-mini" data-img="assets/shot-shipeace-mobile.png">
+            <img alt="Shipeace mobile screenshot">
+            <div class="ph-empty"><div class="glyph">📱</div><div class="hint">assets/shot-shipeace-mobile.png</div></div>
+          </div>
+        </div>
+        <div class="stores">
+          <a href="https://www.shipeace.com/en" target="_blank" rel="noopener">🌐 Visit website</a>
+          <a href="https://play.google.com/store/apps/details?id=com.logipeace.shipeace_app" target="_blank" rel="noopener">▶ Google Play</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap reveal">
+    <h2 class="sec-title">Experience</h2>
+    <p class="sec-sub">Nine years across fintech, crypto, e-commerce, and mobility — from Android developer to technical lead.</p>
+
+    <div class="job">
+      <div class="logo-slot" data-img="assets/logo-arki.png"><span class="monogram">A</span><img alt="Arki Finance logo"></div>
+      <div class="job-body">
+        <div class="job-head"><h3>Consultant</h3><span class="co">Arki Finance &amp; Shipeace — Singapore</span></div>
+        <div class="job-meta">July 2024 — Present</div>
+        <ul>
+          <li>Consulting on the <strong>Arki Finance</strong> mobile app — a personalised wealth platform licensed by the Monetary Authority of Singapore, live on the App Store and Google Play.</li>
+          <li>Consulting for <strong>Shipeace</strong> — an AI-powered logistics operations platform for maritime teams, covering project management, document AI, and real-time shipment tracking.</li>
+          <li>Helped Shipeace <strong>raise $1.5M in VC funding</strong> by building the product to investment-ready quality.</li>
+          <li>Leading the <strong>Frontend engineering team</strong> — owning delivery across web and mobile clients.</li>
+          <li>Advising on architecture, code quality, and release practices.</li>
+          <li>Defined a new <strong>AI-augmented way of working</strong> — an SDLC built on spec-driven development that speeds up feature integration.</li>
+        </ul>
+        <div class="projects">Projects: <span class="pj"><a href="https://www.arkifinance.com/" target="_blank" rel="noopener">arkifinance.com</a></span> · <span class="pj"><a href="https://www.shipeace.com/en" target="_blank" rel="noopener">shipeace.com</a></span></div>
+        <div class="stack"><span class="tag">Flutter</span><span class="tag">iOS</span><span class="tag">Android</span><span class="tag">TypeScript</span><span class="tag">Next.js</span></div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="logo-slot" data-img="assets/logo-clevercards.png"><span class="monogram">C</span><img alt="CleverCards logo"></div>
+      <div class="job-body">
+        <div class="job-head"><h3>Senior Mobile Developer</h3><span class="co">CleverCards — County Dublin, Ireland</span></div>
+        <div class="job-meta">February 2023 — Present</div>
+        <ul>
+          <li>Led the complete architectural redesign and rebuild of the flagship mobile app using Flutter, achieving the <strong>#1 Finance App ranking</strong> in the App Store Ireland.</li>
+          <li>Engineered a new, scalable architecture that fixed legacy bugs, <strong>decreasing application crashes by 20%</strong> and significantly improving performance.</li>
+          <li>Transformed the user experience, leading to increased app success and satisfaction.</li>
+          <li>Integrated Apple Pay and Google Pay to enhance core functionality and user convenience.</li>
+        </ul>
+        <div class="projects">Project: <span class="pj"><a href="https://www.clevercards.com/" target="_blank" rel="noopener">clevercards.com</a></span></div>
+        <div class="stack"><span class="tag">Flutter</span><span class="tag">Java</span><span class="tag">Kotlin</span><span class="tag">Swift</span><span class="tag">AWS</span><span class="tag">Firebase</span><span class="tag">Apple Pay</span><span class="tag">Google Pay</span></div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="logo-slot" data-img="assets/logo-snapex.png"><span class="monogram">S</span><img alt="SnapEx logo"></div>
+      <div class="job-body">
+        <div class="job-head"><h3>Mobile Technical Lead</h3><span class="co">SnapEx — Hong Kong SAR</span></div>
+        <div class="job-meta">October 2022 — January 2023</div>
+        <ul>
+          <li>As the sole mobile developer, rebuilt a cryptocurrency exchange application from the ground up using Flutter.</li>
+          <li>Defined the complete mobile architecture and established coding conventions to ensure consistent code quality and reliability.</li>
+          <li>Successfully improved application performance and overall user satisfaction through the rebuild.</li>
+        </ul>
+        <div class="stack"><span class="tag">Flutter</span></div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="logo-slot" data-img="assets/logo-shuei.png"><span class="monogram">S</span><img alt="Shuei Trading logo"></div>
+      <div class="job-body">
+        <div class="job-head"><h3>Senior Mobile Developer</h3><span class="co">Shuei Trading — Tokyo, Japan</span></div>
+        <div class="job-meta">May 2021 — September 2022</div>
+        <ul>
+          <li>Spearheaded the development of a new e-commerce application, contributing to a <strong>70% increase in active users</strong>.</li>
+          <li>Functioned as Mobile Tech Lead, defining the architecture and coding conventions for the entire mobile application.</li>
+          <li>Led an outsourced development team, managing requirements analysis, technical proposals, and timeline estimations.</li>
+          <li>Implemented features based on user feedback, resulting in a <strong>30% increase in user engagement</strong>.</li>
+        </ul>
+        <div class="projects">Projects: <span class="pj">BellCosme</span> (cosmetics shopping, Android/iOS) · <span class="pj">Cosme de Net</span> (cosmetics mail order, Android/iOS) · <span class="pj">Lens Labo</span> (contact lenses, Android/iOS)</div>
+        <div class="stack"><span class="tag">Flutter</span><span class="tag">Firebase</span><span class="tag">VueJS</span><span class="tag">.NET Core</span></div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="logo-slot" data-img="assets/logo-collectivec.png"><span class="monogram">C</span><img alt="The Collective C logo"></div>
+      <div class="job-body">
+        <div class="job-head"><h3>Senior Mobile Developer</h3><span class="co">The Collective C — Ho Chi Minh City, Vietnam</span></div>
+        <div class="job-meta">April 2020 — April 2021</div>
+        <ul>
+          <li>Led the mobile team, defined application architecture, and established coding conventions to enhance project efficiency and maintainability.</li>
+          <li>Reviewed code and trained junior team members, resulting in a <strong>40% improvement in team-wide code quality</strong>.</li>
+          <li>Researched and integrated new technologies, including Blockchain and NFT, to deliver innovative features.</li>
+        </ul>
+        <div class="projects">Projects: <span class="pj">Trip Social</span> (travel social platform) · <span class="pj">ACKTrails</span> (travel &amp; exploration, Android/iOS) · <span class="pj">Lexus TA SHARE</span> (car-service booking, Android/iOS) · <span class="pj">Lexus TA SHARE DRV</span> (driver app, Android/iOS)</div>
+        <div class="stack"><span class="tag">Flutter</span><span class="tag">Android</span><span class="tag">iOS</span><span class="tag">GraphQL</span><span class="tag">MapBox</span><span class="tag">Realm</span><span class="tag">Firebase</span></div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="logo-slot" data-img="assets/logo-zien.png"><span class="monogram">Z</span><img alt="Zien Solutions logo"></div>
+      <div class="job-body">
+        <div class="job-head"><h3>Software Engineer</h3><span class="co">Zien Solutions — Ho Chi Minh City, Vietnam</span></div>
+        <div class="job-meta">July 2018 — April 2020</div>
+        <ul>
+          <li>Took full responsibility for back-end and front-end development on key projects, including the AVflow no-code video platform.</li>
+          <li>Designed database schemas and implemented new features to improve data management and system functionality.</li>
+          <li>Researched and integrated AWS services and third-party APIs to optimize video-based application workflows.</li>
+        </ul>
+        <div class="stack"><span class="tag">Android</span><span class="tag">iOS</span><span class="tag">Flutter</span><span class="tag">Cordova</span><span class="tag">Angular 1</span><span class="tag">NodeJS</span><span class="tag">AWS</span><span class="tag">MSSQL</span></div>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="logo-slot" data-img="assets/logo-aris.png"><span class="monogram">A</span><img alt="ARIS Vietnam logo"></div>
+      <div class="job-body">
+        <div class="job-head"><h3>Android Developer</h3><span class="co">ARIS Vietnam Co., LTD — Ho Chi Minh City, Vietnam</span></div>
+        <div class="job-meta">March 2017 — June 2018</div>
+        <ul>
+          <li>Developed and maintained native Android projects (Java/Kotlin) for clients in the Japanese market.</li>
+          <li>Operated within an Agile/Scrum environment, adhering to high coding standards to meet project deadlines and objectives.</li>
+        </ul>
+        <div class="stack"><span class="tag">Android</span><span class="tag">Java</span><span class="tag">Kotlin</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap reveal">
+    <h2 class="sec-title">Skills</h2>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>Mobile</h3>
+        <div class="tags"><span class="tag">Flutter</span><span class="tag">Android</span><span class="tag">Kotlin</span><span class="tag">Java</span><span class="tag">iOS</span><span class="tag">Swift</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Web &amp; Backend</h3>
+        <div class="tags"><span class="tag">TypeScript</span><span class="tag">Next.js</span><span class="tag">AWS Services</span><span class="tag">Node.js</span><span class="tag">Firebase</span><span class="tag">GraphQL</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>AI &amp; Tooling</h3>
+        <div class="tags"><span class="tag">Claude Code</span><span class="tag">Claude</span><span class="tag">GitHub Copilot</span><span class="tag">OpenAI Codex</span><span class="tag">Spec-Driven Development</span><span class="tag">AI Workflows</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Leadership</h3>
+        <div class="tags"><span class="tag">Technical Architecture</span><span class="tag">Team Mentoring</span><span class="tag">Code Review</span><span class="tag">Agile / Scrum</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap reveal">
+    <h2 class="sec-title">Education</h2>
+    <div class="edu">
+      <h3>Bachelor's degree in Information Technology</h3>
+      <p>HCMC University of Natural Resources and Environment · January 2013 — January 2017</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-links">
+      <a href="mailto:manhtuan17121994@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/tuantranmanh/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/manhtuan1712" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="tiny">© 2026 Tuan Tran Manh · Built with plain HTML &amp; CSS · Cmd/Ctrl-P for a printable PDF</div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox"><img alt="Screenshot enlarged"></div>
+
+<script>
+  // Lightbox: click any filled frame to zoom
+  var lb = document.getElementById("lightbox");
+  var lbImg = lb.querySelector("img");
+  document.querySelectorAll(".phone, .browser").forEach(function (fr) {
+    fr.addEventListener("click", function () {
+      if (!fr.classList.contains("has-img")) return;
+      lbImg.src = fr.querySelector("img").src;
+      lb.classList.add("open");
+    });
+  });
+  lb.addEventListener("click", function () { lb.classList.remove("open"); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") lb.classList.remove("open"); });
+
+  // Auto-fill image slots: any element with data-img tries to load the asset;
+  // on success the image shows, otherwise the placeholder/monogram stays.
+  document.querySelectorAll("[data-img]").forEach(function (slot) {
+    var img = slot.querySelector("img");
+    if (!img) return;
+    var probe = new Image();
+    probe.onload = function () { img.src = probe.src; slot.classList.add("has-img"); };
+    probe.src = slot.getAttribute("data-img");
+  });
+
+  // Scroll-reveal animations
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+</script>
+
+</body>
+</html>
